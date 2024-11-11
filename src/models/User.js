@@ -6,7 +6,6 @@ const userSchema = new mongoose.Schema({
   _id: {  // Override the default `_id` field to use UUID
     type: String,
     default: uuidv4,  // Generate UUID for the identifier
-    unique: true,  // Ensure uniqueness
   },
   username: {
     type: String,
