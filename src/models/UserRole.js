@@ -23,7 +23,4 @@ const userRoleSchema = new mongoose.Schema(
     },
 );
 
-// Index for faster lookup (unique combination of user and role)
-userRoleSchema.index({ user: 1, role: 1 }, { unique: true });
-
 module.exports = mongoose.model('UserRole', userRoleSchema);

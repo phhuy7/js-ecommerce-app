@@ -5,7 +5,6 @@ const rolePermissionSchema = new mongoose.Schema({
   _id: {  // Use UUID as the unique identifier
     type: String,
     default: uuidv4,
-    unique: true,  // Ensure the _id is unique
   },
   role: {
     type: String,  // Role UUID
@@ -18,8 +17,5 @@ const rolePermissionSchema = new mongoose.Schema({
     ref: 'Permission',  // Reference to the Permission model
   },
 });
-
-// Index for faster lookup (unique combination of role and permission)
-rolePermissionSchema.index({ role: 1, permission: 1 }, { unique: true });
 
 module.exports = mongoose.model('RolePermission', rolePermissionSchema);
