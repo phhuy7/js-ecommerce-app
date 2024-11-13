@@ -3,16 +3,9 @@ const UserRole = require('../models/UserRole');
 // Create a new userRole
 const createUserRole = async (req, res) => {
   try {
-    const { name, description } = req.body;
+    const { userId, roleId } = req.body;
 
-    // Check if userRole already exists
-    let userRole = await UserRole.findOne({ name });
-    if (userRole) {
-      return res.status(400).json({ msg: 'UserRole already exists' });
-    }s
-
-    // Create new userRole
-    userRole = new UserRole({ name, description });
+    userRole = new UserRole({ userId, roleId });
     await userRole.save();
 
     res.status(201).json(userRole);

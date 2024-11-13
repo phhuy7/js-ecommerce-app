@@ -89,15 +89,23 @@ exports.loginUser = async (req, res) => {
       }
   
       // Get the user's role
-      const userRoleAssignment = await UserRole.findOne({ userId: user._id });
-      const role = await Role.findById(userRoleAssignment.roleId);
-  
+      const userRoleAssignment = await UserRole.find({ userId: user._id });
+      // const role = await Role.findById(userRoleAssignment.roleId);
+      const roles = await Promise.all(
+        userRoleAssignment.map(async (assignment) => {
+          const role = await Role.findById(assignment.roleId);
+          return role.name;
+        })
+      );
+
+
       // Generate JWT token
       const token = jwt.sign(
-        { userId: user._id, roleId: role._id },
+        { userId: user._id },
         process.env.JWT_SECRET,
         { expiresIn: '1h' }
       );
+
   
       // Send response with user details and token
       res.json({
@@ -106,7 +114,7 @@ exports.loginUser = async (req, res) => {
         user: {
           id: user._id,
           username: user.username,
-          role: role.name,
+          role: roles,
         },
       });
     } catch (err) {

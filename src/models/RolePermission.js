@@ -6,12 +6,12 @@ const rolePermissionSchema = new mongoose.Schema({
     type: String,
     default: uuidv4,
   },
-  role: {
+  roleId: {
     type: String,  // Role UUID
     required: true,
     ref: 'Role',  // Reference to the Role model
   },
-  permission: {
+  permissionId: {
     type: String,  // Permission UUID
     required: true,
     ref: 'Permission',  // Reference to the Permission model
