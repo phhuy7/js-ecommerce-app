@@ -1,5 +1,6 @@
 const authMiddleware = require('../middleware/authMiddleware');
 const roleMiddleware = require('../middleware/roleMiddleware');
+const permissionMiddleware = require('../middleware/permissionMiddleware');
 const Role = require('../models/Role');
 const User = require('../models/User');
 const express = require('express');
@@ -18,10 +19,10 @@ const {
 
 
 // Create a new rolePermission
-router.post('/',authMiddleware,roleMiddleware('ADMIN'), createRolePermission);
+router.post('/',authMiddleware,roleMiddleware('ADMIN'),permissionMiddleware('CREATE'), createRolePermission);
 
 // Get all rolePermissions
-router.get('/', getRolePermissions);
+router.get('/', authMiddleware,roleMiddleware('ADMIN'),permissionMiddleware('READ'), getRolePermissions);
 
 // Get a single rolePermission by ID
 router.get('/:id', getRolePermissionById);

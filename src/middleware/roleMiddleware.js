@@ -6,10 +6,8 @@ const roleMiddleware = (requiredRole) => async (req, res, next) => {
   try {
     // Fetch all roles associated with the user and populate the role details from the Role collection
     const userRoles = await UserRole.find({ userId }).populate('roleId'); // Populate 'roleId' field with role details
-
     // Check if the user has the required role
     const roleNames = userRoles.map(userRole => userRole.roleId.name); // Access the role name after population
-
     if (!roleNames.includes(requiredRole)) {
       return res.status(403).json({ message: 'Access denied. Insufficient roles.' });
     }
