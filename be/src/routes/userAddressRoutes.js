@@ -14,7 +14,7 @@ const {
 router.post('/createUserAddress', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('CREATE'), createUserAddress);
 
 // Get all user addresses
-router.get('/getAllUserAddresses/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('READ'), getUserAddresses);
+router.get('/getUserAddress/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('READ'), getUserAddresses);
 
 // Update a user address
 router.put('/updateUserAddress/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('UPDATE'), updateUserAddress);

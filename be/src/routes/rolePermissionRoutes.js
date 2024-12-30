@@ -4,26 +4,26 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const roleMiddleware = require('../middlewares/roleMiddleware');
 const permissionMiddleware = require('../middlewares/permissionMiddleware');
 const {
-  createRolePermission,
-  getRolePermissions,
-  getRolePermissionById,
-  updateRolePermission,
-  deleteRolePermission,
-} = require('../controllers/rolePermissionController');
+  createProduct,
+  getProducts,
+  getProductById,
+  updateProduct,
+  deleteProduct,
+} = require('../controllers/productController');
 
-// Create a new rolePermission
-router.post('/createRolePermission',authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('CREATE'), createRolePermission);
+// Create a new product
+router.post('/createProduct',authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('CREATE'), createProduct);
 
-// Get all rolePermissions
-router.get('/getAllRolePermissions', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('READ'), getRolePermissions);
+// Get all products
+router.get('/getAllProducts', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('READ'), getProducts);
 
-// Get a single rolePermission by ID
-router.get('/getRolePermission/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('READ'), getRolePermissionById);
+// Get a single product by ID
+router.get('/getProduct/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('READ'), getProductById);
 
-// Update a rolePermission
-router.put('/updateRolePermission/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('UPDATE'), updateRolePermission);
+// Update a product
+router.put('/updateProduct/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('UPDATE'), updateProduct);
 
-// Delete a rolePermission
-router.delete('/deleteRolePermission/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('DELETE'), deleteRolePermission);
+// Delete a product
+router.delete('/deleteProduct/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('DELETE'), deleteProduct);
 
 module.exports = router;

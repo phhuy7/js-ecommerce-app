@@ -7,8 +7,9 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const userRoleRoutes = require('./routes/userRoleRoutes');
 const rolePermissionRoutes = require('./routes/rolePermissionRoutes');
-const userAddress = require('./routes/userAddressRoutes');
-
+const userAddressRoutes = require('./routes/userAddressRoutes');
+const productRoutes = require('./routes/productRoutes');
+const cartRoutes = require('./routes/cartRoutes');
 const app = express();
 
 // Middleware setup
@@ -18,12 +19,13 @@ app.use(cors()); // Enable CORS if you plan to allow cross-origin requests
 // Routes
 app.use('/api/permission', permissionRoutes); // Mounting permission routes on '/api/permissions'
 app.use('/api/role', roleRoutes);  // Mounting role routes on '/api/roles'
-app.use('/api/auth',authRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/userRole', userRoleRoutes);
 app.use('/api/rolePermission', rolePermissionRoutes);
-app.use('/api/userAddress',userAddress);
-
+app.use('/api/userAddress', userAddressRoutes);
+app.use('/api/product', productRoutes);
+app.use('/api/cart', cartRoutes);
 
 // Default route for root
 app.get('/', (req, res) => {
