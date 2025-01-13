@@ -9,6 +9,7 @@ const {
   getUserById,
   updateUser,
   deleteUser,
+  changePassword,
 } = require('../controllers/userController');
 
 // Create a new user
@@ -25,5 +26,8 @@ router.put('/updateUser/:id', authMiddleware, roleMiddleware('ADMIN'), permissio
 
 // Delete a user
 router.delete('/deleteUser/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('DELETE'), deleteUser);
+
+// Change password
+router.put('/me/password', authMiddleware, changePassword);
 
 module.exports = router;

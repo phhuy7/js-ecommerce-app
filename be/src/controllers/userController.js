@@ -1,5 +1,5 @@
 const User = require('../models/User');
-
+const bcrypt = require('bcryptjs');
 // Create a new user
 const createUser = async (req, res) => {
   try {
@@ -80,10 +80,41 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+
+  try {
+    // Find the user by ID
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+
+    // Check if the current password is correct
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ msg: 'Current password is incorrect' });
+    }
+
+    // Hash the new password
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
+
+    // Save the updated user
+    await user.save();
+
+    res.status(200).json({ msg: 'Password changed successfully' });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+};
+
 module.exports = {
   createUser,
   getUsers,
   getUserById,
+  changePassword,
   updateUser,
   deleteUser,
 };

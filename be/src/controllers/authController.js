@@ -5,7 +5,6 @@ const Role = require('../models/Role');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const BlacklistedToken = require('../models/BlacklistedToken');
-
 exports.registerUser = async (req, res) => {
   try {
     // Validate request body
@@ -148,3 +147,39 @@ exports.logoutUser = async (req, res) => {
     res.status(400).json({ message: 'Invalid or expired token' });
   }
 };
+
+exports.refreshToken = async (req, res) => {
+  const { refreshToken } = req.body;
+
+  if (!refreshToken) {
+    return res.status(400).json({ msg: 'Refresh token is required' });
+  }
+
+  try {
+    // Verify the refresh token
+    const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+
+    // Check if the refresh token is blacklisted
+    const blacklistedToken = await BlacklistedToken.findOne({ token: refreshToken });
+    if (blacklistedToken) {
+      return res.status(403).json({ msg: 'Refresh token is blacklisted' });
+    }
+
+    // Find the user associated with the refresh token
+    const user = await User.findById(decoded.userId);
+    if (!user) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+
+    // Generate a new access token
+    const accessToken = jwt.sign({ userId: user._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+
+    // Optionally, generate a new refresh token
+    const newRefreshToken = jwt.sign({ userId: user._id }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
+
+    res.status(200).json({ accessToken, refreshToken: newRefreshToken });
+  } catch (err) {
+    res.status(403).json({ msg: 'Invalid refresh token', error: err.message });
+  }
+};
+
