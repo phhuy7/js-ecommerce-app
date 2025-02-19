@@ -4,12 +4,12 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const roleMiddleware = require('../middlewares/roleMiddleware');
 const permissionMiddleware = require('../middlewares/permissionMiddleware');
 const {
-  createUser,
-  getUsers,
-  getUserById,
-  updateUser,
-  deleteUser,
-  changePassword,
+    createUser,
+    getUsers,
+    getUserById,
+    updateUser,
+    deleteUser,
+    changePassword,
 } = require('../controllers/userController');
 
 // Create a new user

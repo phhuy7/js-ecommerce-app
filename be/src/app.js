@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors'); // Optional: for Cross-Origin Resource Sharing
 const permissionRoutes = require('./routes/permissionRoutes'); // Permission routes
 const roleRoutes = require('./routes/roleRoutes');

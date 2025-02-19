@@ -2,26 +2,23 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const { v4: uuidv4 } = require('uuid');
 
-// Permission schema
-const permissionSchema = new Schema(
-  {
+const permissionSchema = new Schema({
     _id: {
-      type: String,
-      default: uuidv4,  // Generate UUID for the permission _id
+        type: String,
+        default: uuidv4,
     },
     name: {
-      type: String,
-      required: true,
-      unique: true, // Ensure unique permission names
+        type: String,
+        required: true,
+        unique: true,
     },
     description: {
-      type: String,
-      default: '',  // Optional description
+        type: String,
+        default: '',
     },
-  },
-  {
-    timestamps: true,  // Automatically handle createdAt and updatedAt fields
-  }
-);
+},
+{
+    timestamps: true,
+});
 
 module.exports = mongoose.model('Permission', permissionSchema);

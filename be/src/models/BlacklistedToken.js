@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const BlacklistedTokenSchema = new Schema({
-  token: { type: String, required: true },
-  expiresAt: { type: Date, required: true },
+    token: { type: String, required: true },
+    expiresAt: { type: Date, required: true },
 });
 
 // TTL Index to automatically delete expired tokens

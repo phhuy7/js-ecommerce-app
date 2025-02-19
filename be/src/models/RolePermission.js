@@ -1,21 +1,22 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 const { v4: uuidv4 } = require('uuid');
 
-const rolePermissionSchema = new mongoose.Schema({
-  _id: {  // Use UUID as the unique identifier
-    type: String,
-    default: uuidv4,
-  },
-  roleId: {
-    type: String,  // Role UUID
-    required: true,
-    ref: 'Role',  // Reference to the Role model
-  },
-  permissionId: {
-    type: String,  // Permission UUID
-    required: true,
-    ref: 'Permission',  // Reference to the Permission model
-  },
+const rolePermissionSchema = new Schema({
+    _id: {
+        type: String,
+        default: uuidv4,
+    },
+    roleId: {
+        type: String,
+        required: true,
+        ref: 'Role',
+    },
+    permissionId: {
+        type: String,
+        required: true,
+        ef: 'Permission',
+    },
 });
 
 module.exports = mongoose.model('RolePermission', rolePermissionSchema);

@@ -3,15 +3,15 @@ const { Schema } = mongoose;
 const { v4: uuidv4 } = require('uuid');
 
 
-const cartItemSchema = new mongoose.Schema({
+const cartItemSchema = new Schema({
     _id: {
         type: String,
-        default: uuidv4,  // Generate UUID for the permission _id
+        default: uuidv4,
     },
     productId: {
-        type: String, // Refers to Product _id (UUID)
+        type: String,
         required: true,
-        ref: 'Product', // Reference to the Product model
+        ref: 'Product',
     },
     name: { 
         type: String, 
@@ -19,13 +19,13 @@ const cartItemSchema = new mongoose.Schema({
     },
     price: { 
         type: Number, 
-        required: true 
+        required: true,
     },
     quantity: { 
         type: Number, 
         required: true, 
         min: 1, 
-        default: 1 
+        default: 1,
     },
     imgUrl: { 
         type: String 
@@ -41,7 +41,7 @@ const cartSchema = new mongoose.Schema({
     items: [cartItemSchema],
     totalPrice: { 
         type: Number, 
-        default: 0 
+        default: 0, 
     },
     createdAt: {
         type: Date,

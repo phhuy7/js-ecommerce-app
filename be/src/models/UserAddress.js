@@ -1,45 +1,47 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 const { v4: uuidv4 } = require('uuid');
 
-const userAddressSchema = new mongoose.Schema({
+const userAddressSchema = new Schema({
     _id: { 
         type: String,
         default: uuidv4,
     },
     userId: {
-        type: String,  // User UUID
+        type: String,
         required: true,
-        ref: 'User',  // Reference to the User model
+        ref: 'User',
     },
     type: {
         type: String,
         enum: ['Home', 'Work', 'Billing', 'Shipping'],
-        default: 'Home' 
+        default: 'Home',
     },
     street: {
         type: String,
-        required: true
+        required: true,
 
     },
     city: {
         type: String,
-        required: true
+        required: true,
     },
     state: { type: String,
-        required: true
+        required: true,
     },
     postalCode: {
         type: String,
-        required: true
+        required: true,
     },
     country: { type: String,
-        required: true
+        required: true,
     },
     isDefault: { type: Boolean,
-        default: false
-    } // To mark the default address
-}, {
-  timestamps: true
+        default: false,
+    }
+},
+{
+    timestamps: true
 });
 
 module.exports = mongoose.model('UserAddress', userAddressSchema);
