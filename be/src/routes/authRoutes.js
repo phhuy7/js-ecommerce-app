@@ -1,12 +1,16 @@
 const express = require('express');
 const { body } = require('express-validator');
 const router = express.Router();
+const authMiddleware = require('../middlewares/authMiddleware');
 const registerValidation = require('../validators/registerValidation');
 const loginValidation = require('../validators/loginValidation');
 const {
   registerUser,
   loginUser,
   logoutUser,
+  forgotPassword,
+  resetPassword,
+  changePassword,
 } = require('../controllers/authController');
 /**
  * @swagger
@@ -104,5 +108,104 @@ router.post(
   '/logout',
   logoutUser
 );
+
+/**
+ * @swagger
+ * /api/auth/forgot-password:
+ *   post:
+ *     summary: Request a password reset email
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *             properties:
+ *               email:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Password reset email sent
+ *       404:
+ *         description: Email not found
+ */
+router.post(
+  '/forgot-password',
+  forgotPassword
+);
+
+
+/**
+ * @swagger
+ * /api/auth/reset-password:
+ *   post:
+ *     summary: Reset password using token
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - token
+ *               - newPassword
+ *             properties:
+ *               token:
+ *                 type: string
+ *               newPassword:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Password reset successful
+ *       400:
+ *         description: Invalid or expired token
+ */
+router.post(
+  '/reset-password',
+  resetPassword
+);
+
+/**
+ * @swagger
+ * /api/auth/change-password:
+ *   post:
+ *     summary: Change password (user must be authenticated)
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - currentPassword
+ *               - newPassword
+ *             properties:
+ *               currentPassword:
+ *                 type: string
+ *               newPassword:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Password changed successfully
+ *       400:
+ *         description: Current password is incorrect or missing fields
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Server error
+ */
+router.post(
+  '/change-password',
+  authMiddleware,
+  changePassword
+);
+
 
 module.exports = router;

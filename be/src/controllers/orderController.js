@@ -109,4 +109,9 @@ const updateOrderStatus = async (req, res) => {
   }
 };
 
-module.exports = { placeOrder, getUserOrders, getAllOrders, updateOrderStatus };
+module.exports = {
+  placeOrder,
+  getUserOrders,
+  getAllOrders,
+  updateOrderStatus
+};
