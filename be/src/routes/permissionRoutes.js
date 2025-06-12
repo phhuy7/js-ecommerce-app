@@ -20,7 +20,7 @@ const {
 
 /**
  * @swagger
- * /api/permission/createPermission:
+ * /api/permission/create-permission:
  *   post:
  *     summary: Create a new permission
  *     tags: [Permissions]
@@ -48,7 +48,7 @@ const {
  *         description: Server error
  */
 router.post(
-  '/createPermission',
+  '/create-permission',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('PERMISSION_CREATE'),
@@ -57,7 +57,7 @@ router.post(
 
 /**
  * @swagger
- * /api/permission/getAllPermissions:
+ * /api/permission/get-all-permissions:
  *   get:
  *     summary: Get all permissions
  *     tags: [Permissions]
@@ -70,7 +70,7 @@ router.post(
  *         description: Server error
  */
 router.get(
-  '/getAllPermissions',
+  '/get-all-permissions',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('PERMISSION_READ'),
@@ -79,7 +79,7 @@ router.get(
 
 /**
  * @swagger
- * /api/permission/getPermission/{id}:
+ * /api/permission/get-permission/{id}:
  *   get:
  *     summary: Get a permission by ID
  *     tags: [Permissions]
@@ -101,7 +101,7 @@ router.get(
  *         description: Server error
  */
 router.get(
-  '/getPermission/:id',
+  '/get-permission/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('PERMISSION_READ'),
@@ -110,7 +110,7 @@ router.get(
 
 /**
  * @swagger
- * /api/permission/updatePermission/{id}:
+ * /api/permission/update-permission/{id}:
  *   put:
  *     summary: Update a permission
  *     tags: [Permissions]
@@ -143,8 +143,8 @@ router.get(
  *         description: Server error
  */
 router.put(
-  '/updatePermission/:id',
-  authMiddleware, 
+  '/update-permission/:id',
+  authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('PERMISSION_UPDATE'),
   updatePermission
@@ -152,7 +152,7 @@ router.put(
 
 /**
  * @swagger
- * /api/permission/deletePermission/{id}:
+ * /api/permission/delete-permission/{id}:
  *   delete:
  *     summary: Delete a permission
  *     tags: [Permissions]
@@ -174,7 +174,7 @@ router.put(
  *         description: Server error
  */
 router.delete(
-  '/deletePermission/:id',
+  '/delete-permission/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('PERMISSION_DELETE'),

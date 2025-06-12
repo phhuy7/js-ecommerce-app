@@ -20,7 +20,7 @@ const {
 
 /**
  * @swagger
- * /api/userRole/createUserRole:
+ * /api/userRole/create-user-role:
  *   post:
  *     summary: Create a new user-role mapping
  *     tags: [UserRoles]
@@ -47,7 +47,7 @@ const {
  *         description: Server error
  */
 router.post(
-  '/createUserRole',
+  '/create-user-role',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('USERROLE_CREATE'),
@@ -56,7 +56,7 @@ router.post(
 
 /**
  * @swagger
- * /api/userRole/getAllUserRoles:
+ * /api/userRole/get-all-user-roles:
  *   get:
  *     summary: Get all user-role mappings
  *     tags: [UserRoles]
@@ -69,7 +69,7 @@ router.post(
  *         description: Server error
  */
 router.get(
-  '/getAllUserRoles',
+  '/get-all-user-roles',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('USERROLE_READ'),
@@ -78,7 +78,7 @@ router.get(
 
 /**
  * @swagger
- * /api/userRole/getUserRole/{id}:
+ * /api/userRole/get-user-role/{id}:
  *   get:
  *     summary: Get a user-role mapping by ID
  *     tags: [UserRoles]
@@ -100,7 +100,7 @@ router.get(
  *         description: Server error
  */
 router.get(
-  '/getUserRole/:id',
+  '/get-user-role/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('USERROLE_READ'),
@@ -109,7 +109,7 @@ router.get(
 
 /**
  * @swagger
- * /api/userRole/updateUserRole/{id}:
+ * /api/userRole/update-user-role/{id}:
  *   put:
  *     summary: Update a user-role mapping
  *     tags: [UserRoles]
@@ -142,7 +142,7 @@ router.get(
  *         description: Server error
  */
 router.put(
-  '/updateUserRole/:id',
+  '/update-user-role/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('USERROLE_UPDATE'),
@@ -151,7 +151,7 @@ router.put(
 
 /**
  * @swagger
- * /api/userRole/deleteUserRole/{id}:
+ * /api/userRole/delete-user-role/{id}:
  *   delete:
  *     summary: Delete a user-role mapping
  *     tags: [UserRoles]
@@ -173,7 +173,7 @@ router.put(
  *         description: Server error
  */
 router.delete(
-  '/deleteUserRole/:id',
+  '/delete-user-role/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('USERROLE_DELETE'),

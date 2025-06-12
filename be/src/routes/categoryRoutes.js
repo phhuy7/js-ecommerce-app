@@ -4,27 +4,26 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const roleMiddleware = require('../middlewares/roleMiddleware');
 const permissionMiddleware = require('../middlewares/permissionMiddleware');
 const {
-  createUser,
-  getUsers,
-  getUserById,
-  updateUser,
-  deleteUser,
-  getCurrentUser
-} = require('../controllers/userController');
+  createCategory,
+  getCategories,
+  getCategoryById,
+  updateCategory,
+  deleteCategory,
+} = require('../controllers/categoryController');
 
 /**
  * @swagger
  * tags:
- *   name: Users
- *   description: User management endpoints
+ *   name: Categories
+ *   description: Category management endpoints
  */
 
 /**
  * @swagger
- * /api/user/create-user:
+ * /api/category/create-category:
  *   post:
- *     summary: Create a new user
- *     tags: [Users]
+ *     summary: Create a new category
+ *     tags: [Categories]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -42,79 +41,69 @@ const {
  *                 type: string
  *     responses:
  *       201:
- *         description: User created successfully
+ *         description: Category created successfully
  *       400:
- *         description: User already exists or invalid input
+ *         description: Category already exists or invalid input
  *       500:
  *         description: Server error
  */
 router.post(
-  '/create-user',
+  '/create-category',
   authMiddleware,
   roleMiddleware('ADMIN'),
-  permissionMiddleware('USER_CREATE'),
-  createUser
+  permissionMiddleware('CATEGORY_CREATE'),
+  createCategory
 );
 
 /**
  * @swagger
- * /api/user/get-all-users:
+ * /api/category/get-categories:
  *   get:
- *     summary: Get all users
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
+ *     summary: Get all categories
+ *     tags: [Categories]
  *     responses:
  *       200:
- *         description: List of users
+ *         description: List of categories
  *       500:
  *         description: Server error
  */
 router.get(
-  '/get-all-users',
-  authMiddleware,
-  roleMiddleware('ADMIN'),
-  permissionMiddleware('USER_READ'),
-  getUsers
+  '/get-categories',
+  getCategories
 );
 
 /**
  * @swagger
- * /api/user/get-user/{id}:
+ * /api/category/get-category/{id}:
  *   get:
- *     summary: Get a user by ID
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
+ *     summary: Get a category by ID
+ *     tags: [Categories]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
- *         description: User ID
+ *         description: Category ID
  *     responses:
  *       200:
- *         description: User data
+ *         description: Category data
  *       404:
- *         description: User not found
+ *         description: Category not found
  *       500:
  *         description: Server error
  */
 router.get(
-  '/get-user/:id',
-  authMiddleware,
-  roleMiddleware('ADMIN'),
-  permissionMiddleware('USER_READ'),
-  getUserById
+  '/get-category/:id',
+  getCategoryById
 );
 
 /**
  * @swagger
- * /api/user/update-user/{id}:
+ * /api/category/update-category/{id}:
  *   put:
- *     summary: Update a user
- *     tags: [Users]
+ *     summary: Update a category
+ *     tags: [Categories]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -123,7 +112,7 @@ router.get(
  *         required: true
  *         schema:
  *           type: string
- *         description: User ID
+ *         description: Category ID
  *     requestBody:
  *       required: true
  *       content:
@@ -131,32 +120,32 @@ router.get(
  *           schema:
  *             type: object
  *             properties:
- *               username:
+ *               name:
  *                 type: string
- *               email:
+ *               description:
  *                 type: string
  *     responses:
  *       200:
- *         description: User updated successfully
+ *         description: Category updated successfully
  *       404:
- *         description: User not found
+ *         description: Category not found
  *       500:
  *         description: Server error
  */
 router.put(
-  '/update-user/:id',
+  '/update-category/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
-  permissionMiddleware('USER_UPDATE'),
-  updateUser
+  permissionMiddleware('CATEGORY_UPDATE'),
+  updateCategory
 );
 
 /**
  * @swagger
- * /api/user/delete-user/{id}:
+ * /api/category/delete-category/{id}:
  *   delete:
- *     summary: Delete a user
- *     tags: [Users]
+ *     summary: Delete a category
+ *     tags: [Categories]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -165,46 +154,21 @@ router.put(
  *         required: true
  *         schema:
  *           type: string
- *         description: User ID
+ *         description: Category ID
  *     responses:
  *       200:
- *         description: User deleted successfully
+ *         description: Category deleted successfully
  *       404:
- *         description: User not found
+ *         description: Category not found
  *       500:
  *         description: Server error
  */
 router.delete(
-  '/delete-user/:id',
+  '/delete-category/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
-  permissionMiddleware('USER_DELETE'),
-  deleteUser
+  permissionMiddleware('CATEGORY_DELETE'),
+  deleteCategory
 );
-
-/**
- * @swagger
- * /api/user/me:
- *   get:
- *     summary: Get current user's profile
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: User profile data
- *       401:
- *         description: Unauthorized
- *       404:
- *         description: User not found
- *       500:
- *         description: Server error
- */
-router.get(
-  '/me',
-  authMiddleware,
-  getCurrentUser
-);
-
 
 module.exports = router;
