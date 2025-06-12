@@ -20,7 +20,7 @@ const {
 
 /**
  * @swagger
- * /api/rolePermission/createRolePermission:
+ * /api/role-permission/create-role-permission:
  *   post:
  *     summary: Create a new role-permission mapping
  *     tags: [RolePermissions]
@@ -47,7 +47,7 @@ const {
  *         description: Server error
  */
 router.post(
-  '/createRolePermission',
+  '/create-role-permission',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('ROLEPERMISSION_CREATE'),
@@ -56,7 +56,7 @@ router.post(
 
 /**
  * @swagger
- * /api/rolePermission/getAllRolePermissions:
+ * /api/role-permission/get-all-role-permissions:
  *   get:
  *     summary: Get all role-permission mappings
  *     tags: [RolePermissions]
@@ -69,7 +69,7 @@ router.post(
  *         description: Server error
  */
 router.get(
-  '/getAllRolePermissions',
+  '/get-all-role-permissions',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('ROLEPERMISSION_READ'),
@@ -78,7 +78,7 @@ router.get(
 
 /**
  * @swagger
- * /api/rolePermission/getRolePermission/{id}:
+ * /api/role-permission/get-role-permission/{id}:
  *   get:
  *     summary: Get a role-permission mapping by ID
  *     tags: [RolePermissions]
@@ -100,7 +100,7 @@ router.get(
  *         description: Server error
  */
 router.get(
-  '/getRolePermission/:id',
+  '/get-role-permission/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('ROLEPERMISSION_READ'),
@@ -109,7 +109,7 @@ router.get(
 
 /**
  * @swagger
- * /api/rolePermission/updateRolePermission/{id}:
+ * /api/role-permission/update-role-permission/{id}:
  *   put:
  *     summary: Update a role-permission mapping
  *     tags: [RolePermissions]
@@ -142,7 +142,7 @@ router.get(
  *         description: Server error
  */
 router.put(
-  '/updateRolePermission/:id',
+  '/update-role-permission/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('ROLEPERMISSION_UPDATE'),
@@ -151,7 +151,7 @@ router.put(
 
 /**
  * @swagger
- * /api/rolePermission/deleteRolePermission/{id}:
+ * /api/role-permission/delete-role-permission/{id}:
  *   delete:
  *     summary: Delete a role-permission mapping
  *     tags: [RolePermissions]
@@ -173,7 +173,7 @@ router.put(
  *         description: Server error
  */
 router.delete(
-  '/deleteRolePermission/:id',
+  '/delete-role-permission/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('ROLEPERMISSION_DELETE'),

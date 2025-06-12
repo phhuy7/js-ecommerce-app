@@ -20,7 +20,7 @@ const {
 
 /**
  * @swagger
- * /api/role/createRole:
+ * /api/role/create-role:
  *   post:
  *     summary: Create a new role
  *     tags: [Roles]
@@ -48,7 +48,7 @@ const {
  *         description: Server error
  */
 router.post(
-  '/createRole',
+  '/create-role',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('ROLE_CREATE'),
@@ -57,7 +57,7 @@ router.post(
 
 /**
  * @swagger
- * /api/role/getAllRoles:
+ * /api/role/get-all-roles:
  *   get:
  *     summary: Get all roles
  *     tags: [Roles]
@@ -70,7 +70,7 @@ router.post(
  *         description: Server error
  */
 router.get(
-  '/getAllRoles',
+  '/get-all-roles',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('ROLE_READ'),
@@ -79,7 +79,7 @@ router.get(
 
 /**
  * @swagger
- * /api/role/getRole/{id}:
+ * /api/role/get-role/{id}:
  *   get:
  *     summary: Get a role by ID
  *     tags: [Roles]
@@ -100,7 +100,7 @@ router.get(
  *       500:
  *         description: Server error
  */
-router.get('/getRole/:id',
+router.get('/get-role/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('ROLE_READ'),
@@ -109,7 +109,7 @@ router.get('/getRole/:id',
 
 /**
  * @swagger
- * /api/role/updateRole/{id}:
+ * /api/role/update-role/{id}:
  *   put:
  *     summary: Update a role
  *     tags: [Roles]
@@ -142,7 +142,7 @@ router.get('/getRole/:id',
  *         description: Server error
  */
 router.put(
-  '/updateRole/:id',
+  '/update-role/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('ROLE_UPDATE'),
@@ -151,7 +151,7 @@ router.put(
 
 /**
  * @swagger
- * /api/role/deleteRole/{id}:
+ * /api/role/delete-role/{id}:
  *   delete:
  *     summary: Delete a role
  *     tags: [Roles]
@@ -173,7 +173,7 @@ router.put(
  *         description: Server error
  */
 router.delete(
-  '/deleteRole/:id',
+  '/delete-role/:id',
   authMiddleware,
   roleMiddleware('ADMIN'),
   permissionMiddleware('ROLE_DELETE'),

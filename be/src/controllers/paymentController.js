@@ -14,7 +14,7 @@ const IPN_URL = 'https://your-backend.com/api/payment/momo-ipn';
 // VNPay config (replace with your sandbox credentials)
 const VNP_TMNCODE = 'your_vnp_tmncode';
 const VNP_HASH_SECRET = 'your_vnp_hash_secret';
-const VNP_URL = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
+const VNP_URL = 'http://sandbox.vnpayment.vn/tryitnow/Home/CreateOrder';
 const VNP_RETURN_URL = 'https://your-frontend.com/vnpay-return';
 
 // Create Momo payment request

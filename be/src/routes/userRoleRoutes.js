@@ -20,7 +20,7 @@ const {
 
 /**
  * @swagger
- * /api/userRole/create-user-role:
+ * /api/user-role/create-user-role:
  *   post:
  *     summary: Create a new user-role mapping
  *     tags: [UserRoles]
@@ -56,7 +56,7 @@ router.post(
 
 /**
  * @swagger
- * /api/userRole/get-all-user-roles:
+ * /api/user-role/get-all-user-roles:
  *   get:
  *     summary: Get all user-role mappings
  *     tags: [UserRoles]
@@ -78,7 +78,7 @@ router.get(
 
 /**
  * @swagger
- * /api/userRole/get-user-role/{id}:
+ * /api/user-role/get-user-role/{id}:
  *   get:
  *     summary: Get a user-role mapping by ID
  *     tags: [UserRoles]
@@ -109,7 +109,7 @@ router.get(
 
 /**
  * @swagger
- * /api/userRole/update-user-role/{id}:
+ * /api/user-role/update-user-role/{id}:
  *   put:
  *     summary: Update a user-role mapping
  *     tags: [UserRoles]
@@ -151,7 +151,7 @@ router.put(
 
 /**
  * @swagger
- * /api/userRole/delete-user-role/{id}:
+ * /api/user-role/delete-user-role/{id}:
  *   delete:
  *     summary: Delete a user-role mapping
  *     tags: [UserRoles]

@@ -21,15 +21,48 @@ const {
  * @swagger
  * /api/order/place-order:
  *   post:
- *     summary: Place an order from the cart
+ *     summary: Place an order from the user's cart
  *     tags: [Orders]
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               shippingAddress:
+ *                 type: object
+ *                 required:
+ *                   - name
+ *                   - phone
+ *                   - addressLine1
+ *                   - city
+ *                   - postalCode
+ *                   - country
+ *                 properties:
+ *                   name:
+ *                     type: string
+ *                   phone:
+ *                     type: string
+ *                   addressLine1:
+ *                     type: string
+ *                   addressLine2:
+ *                     type: string
+ *                   city:
+ *                     type: string
+ *                   state:
+ *                     type: string
+ *                   postalCode:
+ *                     type: string
+ *                   country:
+ *                     type: string
  *     responses:
  *       201:
  *         description: Order placed
  *       400:
- *         description: Cart is empty
+ *         description: Cart is empty or shipping address is incomplete
  *       500:
  *         description: Server error
  */
@@ -112,6 +145,8 @@ router.get(
  *         description: Order status updated
  *       404:
  *         description: Order not found
+ *       400:
+ *         description: Invalid status or cannot update cancelled/delivered order
  *       500:
  *         description: Server error
  */

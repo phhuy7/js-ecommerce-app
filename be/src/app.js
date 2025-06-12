@@ -14,6 +14,7 @@ const categoryRoutes = require('./routes/categoryRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const userAddressRoutes = require('./routes/userAddressRoutes');
 const cartRoutes = require('./routes/cartRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 const app = express();
 
 // Middleware
@@ -28,13 +29,14 @@ app.use('/api/permission', permissionRoutes);
 app.use('/api/role', roleRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/userRole', userRoleRoutes);
-app.use('/api/rolePermission', rolePermissionRoutes);
+app.use('/api/user-role', userRoleRoutes);
+app.use('/api/role-permission', rolePermissionRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/order', orderRoutes);
-app.use('/api/userAddress', userAddressRoutes);
+app.use('/api/user-address', userAddressRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/payment', paymentRoutes);
 
 // Root route
 app.get('/', (req, res) => {
